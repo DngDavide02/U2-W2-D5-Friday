@@ -42,7 +42,7 @@ public class DipendenteService {
     }
 
     public Dipendente findById(UUID id){
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Dipendente con ID " + id + " non trovato."));
     }
 
     public void deleteById(UUID id){
