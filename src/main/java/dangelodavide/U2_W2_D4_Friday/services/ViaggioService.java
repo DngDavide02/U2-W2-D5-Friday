@@ -30,4 +30,11 @@ public class ViaggioService {
     public void deleteById(UUID id){
         repository.deleteById(id);
     }
+
+    public Viaggio completaViaggio(UUID id) {
+        Viaggio viaggio = this.findById(id);
+        viaggio.setStato("COMPLETATO");
+        return repository.save(viaggio);
+    }
+
 }

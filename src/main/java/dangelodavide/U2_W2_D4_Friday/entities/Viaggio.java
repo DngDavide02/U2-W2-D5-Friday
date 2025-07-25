@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import javax.annotation.processing.Generated;
 import java.time.LocalDate;
@@ -20,11 +21,10 @@ public class Viaggio {
     @NotBlank
     private String destinazione;
 
-    @NotBlank
+    @NotNull
     private LocalDate data;
 
-    @NotBlank
-    private String stato;
+    private String stato = "IN_CORSO";
 
     public UUID getId() {
         return id;

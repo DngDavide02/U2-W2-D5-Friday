@@ -6,4 +6,4 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public record ViaggioPayload(UUID id, @NotBlank String destinazione, @NotNull LocalDate data, @NotBlank String stato) {}
+public record ViaggioPayload(UUID id, @NotBlank String destinazione, @NotNull LocalDate data, String stato) {}
