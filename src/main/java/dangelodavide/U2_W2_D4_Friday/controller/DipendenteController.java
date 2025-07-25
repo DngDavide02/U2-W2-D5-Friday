@@ -5,8 +5,11 @@ import dangelodavide.U2_W2_D4_Friday.entities.Dipendente;
 import dangelodavide.U2_W2_D4_Friday.repository.DipendenteRepository;
 import dangelodavide.U2_W2_D4_Friday.services.DipendenteService;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -81,6 +84,15 @@ public class DipendenteController {
     }//end update
 
     //---------------------------------------------------------inserimento immagini--------------------------------
+
+    @PatchMapping("/{id}/avatar")
+    public String uploadImage(
+            @PathVariable UUID id,
+            @RequestParam("avatar") MultipartFile file
+    ) throws IOException {
+        return service.uploadAvatar(id, file);
+    }
+
 
     // --------------------------------------delete------------------------------------------
     @DeleteMapping("/{id}")
