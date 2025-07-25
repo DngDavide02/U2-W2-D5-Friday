@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"dipendente_id", "dataPrenotazione"})})
 public class Prenotazione {
 
     @Id

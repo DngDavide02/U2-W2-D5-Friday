@@ -1,6 +1,7 @@
 package dangelodavide.U2_W2_D4_Friday.services;
 
 import dangelodavide.U2_W2_D4_Friday.entities.Viaggio;
+import dangelodavide.U2_W2_D4_Friday.exceptions.ResourceNotFoundException;
 import dangelodavide.U2_W2_D4_Friday.repository.ViaggioRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,9 @@ public class ViaggioService {
     }
 
     public Viaggio findById(UUID id){
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Viaggio non trovato con id: " + id));
     }
+
 
     public void deleteById(UUID id){
         repository.deleteById(id);

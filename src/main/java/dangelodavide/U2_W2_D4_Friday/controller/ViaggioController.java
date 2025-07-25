@@ -48,12 +48,20 @@ public class ViaggioController {
 
     //----------------------update----------------------------
 
+    @PutMapping("/{id}")
+    public ViaggioPayload update(@PathVariable UUID id, @RequestBody @Validated ViaggioPayload payload) {
+        Viaggio viaggio = service.findById(id);
+        viaggio.setDestinazione(payload.destinazione());
+        viaggio.setData(payload.data());
+        viaggio.setStato(payload.stato() != null ? payload.stato() : "IN_CORSO");
+        Viaggio updated = service.save(viaggio);
+        return new ViaggioPayload(updated.getId(), updated.getDestinazione(), updated.getData(), updated.getStato());
+    }
+
     //-----------------------------------delete----------------------------
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable UUID id) {
         service.deleteById(id);
     }
-    
-    //
 }
